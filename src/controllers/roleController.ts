@@ -31,3 +31,14 @@ export const updateRoles=(req:Request, res:Response)=>{
     );
 
 };
+
+export const deleteRoles=(req:Request, res:Response)=>{
+
+    res.status(200).json (
+        {
+         succes: true,
+         message: "roles deleted sucessfully",
+        }
+    );
+
+};

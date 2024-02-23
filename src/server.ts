@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import { getRoles, postRoles, updateRoles } from "./controllers/roleController";
+import { deleteRoles, getRoles, postRoles, updateRoles } from "./controllers/roleController";
 
 dotenv.config();
 
@@ -25,6 +25,8 @@ app.get('/roles', getRoles);
 app.post('/roles', postRoles);
 
 app.put('/roles', updateRoles);
+
+app.delete('/roles', deleteRoles);
 
 app.listen(PORT,() =>{
 
