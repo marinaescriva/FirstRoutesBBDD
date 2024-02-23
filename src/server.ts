@@ -24,7 +24,7 @@ app.get('/roles', getRoles);
 
 app.post('/roles', postRoles);
 
-app.put('/roles', updateRoles);
+app.put('/roles/:id', updateRoles);
 
 app.delete('/roles', deleteRoles);
 
