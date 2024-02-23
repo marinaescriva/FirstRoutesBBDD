@@ -20,3 +20,14 @@ export const postRoles=(req:Request, res:Response)=>{
     );
 
 };
+
+export const updateRoles=(req:Request, res:Response)=>{
+
+    res.status(200).json (
+        {
+         succes: true,
+         message: "roles updated sucessfully",
+        }
+    );
+
+};
