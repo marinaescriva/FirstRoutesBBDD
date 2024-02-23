@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 
 export const getRoles= (req: Request,res: Response)=>{
 
+
     res.status(200).json (
         {
          succes: true,
@@ -10,7 +11,12 @@ export const getRoles= (req: Request,res: Response)=>{
     );
 };
 
-export const postRoles=(req:Request, res:Response)=>{
+export const createRoles=(req:Request, res:Response)=>{
+
+    //recuperar la info a traves de req.body, si editas el json añade lo escrito por terminal
+
+    req.body
+    console.log(req.body)
 
     res.status(201).json (
         {
@@ -25,7 +31,7 @@ export const updateRoles=(req:Request, res:Response)=>{
 
     // recuperar datos desde la ruta
 
-    req.params.id
+    req.params.id  
     console.log(req.params.id);
 
     res.status(200).json (
@@ -38,6 +44,9 @@ export const updateRoles=(req:Request, res:Response)=>{
 };
 
 export const deleteRoles=(req:Request, res:Response)=>{
+
+    req.params.id  
+    console.log(req.params.id); //encuentra el param id 
 
     res.status(200).json (
         {

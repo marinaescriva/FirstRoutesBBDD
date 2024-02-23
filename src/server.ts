@@ -1,10 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
-import { deleteRoles, getRoles, postRoles, updateRoles } from "./controllers/roleController";
+import { createRoles, deleteRoles, getRoles, updateRoles } from "./controllers/roleController";
 
 dotenv.config();
 
 const app = express();
+
+app.use(express.json()); //ejecuta hasta encontrar el endpoint y sino devuelve un 404
 
 const PORT = process.env.PORT || 4001;
 
@@ -22,11 +24,11 @@ app.get('/healthy',(req, res)=>{
 
 app.get('/roles', getRoles);
 
-app.post('/roles', postRoles);
+app.post('/roles', createRoles);
 
-app.put('/roles/:id', updateRoles);
+app.put('/roles/:id', updateRoles);  //añadiendo param id en el rol
 
-app.delete('/roles', deleteRoles);
+app.delete('/roles/:id', deleteRoles);
 
 app.listen(PORT,() =>{
 
