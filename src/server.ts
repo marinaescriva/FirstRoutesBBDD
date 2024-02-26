@@ -1,37 +1,13 @@
-import express from "express";
-import dotenv from "dotenv";
-import { createRoles, deleteRoles, getRoles, updateRoles } from "./controllers/roleController";
-
-dotenv.config();
-
-const app = express();
-
-app.use(express.json()); //ejecuta hasta encontrar el endpoint y sino devuelve un 404
-
-const PORT = process.env.PORT || 4001;
+import 'dotenv/config'  //es la solucion de arriba, también comenté la dotenv.config().
+import { app } from './app';
 
 
-app.get('/healthy',(req, res)=>{
 
-    res.status(200).json (
-        {
-        succes: true,
-         message: "server is healthy",
-        }
-    );
+const PORT = process.env.PORT || 4001; //si existe el puerto y sino coges el de env
 
-});
 
-app.get('/roles', getRoles);
+app.listen(PORT,() =>{  //decir a mi aplicacion que escuche el puerto
 
-app.post('/roles', createRoles);
+    console.log(`server is running on port : ${PORT}`)});
 
-app.put('/roles/:id', updateRoles);  //añadiendo param id en el rol
 
-app.delete('/roles/:id', deleteRoles);
-
-app.listen(PORT,() =>{
-
-console.log(`server is running on port : ${PORT}`);
-
-});

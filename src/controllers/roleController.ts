@@ -15,8 +15,10 @@ export const createRoles=(req:Request, res:Response)=>{
 
     //recuperar la info a traves de req.body, si editas el json añade lo escrito por terminal
 
-    req.body
-    console.log(req.body)
+    const {name , email} = req.body;
+    console.log(name);
+
+
 
     res.status(201).json (
         {
