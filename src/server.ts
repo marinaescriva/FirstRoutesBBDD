@@ -4,6 +4,8 @@ import { AppDataSource } from './database/db';
 
 const PORT = process.env.PORT || 4001; //si existe el puerto y sino coges el de env
 
+// const app: Application = express(); esto esta en app?
+
 const startServer = () => {
 
     AppDataSource.initialize()
