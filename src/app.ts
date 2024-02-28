@@ -3,7 +3,7 @@
 import express, { Application } from "express";
 import { createRoles, deleteRoles, getRoles, updateRoles } from "./controllers/roleController";
 import { register } from "./controllers/authController";
-import { getUserById, getUsers } from "./controllers/userController";
+import { deleteUserById, getUserById, getUsers, updateUserById } from "./controllers/userController";
 
 // dotenv.config(); //ejecutas la funcion config de dotenv 
 export const app: Application = express();
@@ -38,3 +38,6 @@ app.post('/api/register', register);
 
 app.get('/api/users', getUsers);
 app.get('/api/users/:id', getUserById);
+
+app.put('/api/users/:id' , updateUserById);
+app.delete('/api/users/:id' , deleteUserById);
