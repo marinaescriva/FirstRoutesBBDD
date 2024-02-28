@@ -36,10 +36,11 @@ export class Users1708948594147 implements MigrationInterface {
                     {
                         name: "role_id",
                         type: "int",
+                        default: 1,
                     },
                     {
                         name: "created_at",
-                        type: "timestamp",
+                        type: "timestamp",  
                         default:"now()",
                     }, 
                     {

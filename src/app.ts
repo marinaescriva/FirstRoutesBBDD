@@ -2,6 +2,7 @@
 // import dotenv from "dotenv";
 import express, { Application } from "express";
 import { createRoles, deleteRoles, getRoles, updateRoles } from "./controllers/roleController";
+import { register } from "./controllers/authController";
 
 // dotenv.config(); //ejecutas la funcion config de dotenv 
 export const app: Application = express();
@@ -30,3 +31,6 @@ app.put('/roles/:id', updateRoles);  //añadiendo param id en el rol
 
 app.delete('/roles/:id', deleteRoles);
 
+//crear la ruta de la app auth.. esto seria user, register
+
+app.post('/api/register', register);
