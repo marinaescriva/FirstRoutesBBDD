@@ -14,7 +14,7 @@ export class User extends BaseEntity {
 
     password!: string
 
-    @Column({name:'name'})
+    @Column({name:'email'})
     email!: string
 
     @Column({name:'created_at'})
@@ -28,6 +28,6 @@ export class User extends BaseEntity {
 
     @ManyToOne(()=> Role, (role)=> role.users)
     @JoinColumn({ name: "role_id"})
-    role!: Role[];
+    role!: Role;
     
 }

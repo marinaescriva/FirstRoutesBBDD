@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
+import bcrypt from "bcrypt";
+import { User } from "../models/User";
 
-export const register = (req: Request, res: Response) => {
+export const register = async (req: Request, res: Response) => {
 
     try {
 
         console.log(req.body);
+        const name = req.body.name; //esto guarda los valores que metamos en body para registrar el usuario
         const email = req.body.email;
         const password = req.body.password;
 
@@ -26,6 +29,21 @@ export const register = (req: Request, res: Response) => {
                 }
             )
         }
+
+        const passwordEncypted = bcrypt.hashSync(password,8);
+        //comprobando que se genera la contraseña encriptada
+        console.log(passwordEncypted);
+
+        const newUser = await User.create({
+            name: name, 
+            email: email,
+            password: passwordEncypted,
+            role: {
+                id:1
+            },
+
+        }) .save()
+
         return res.status(201).json(
             {
                 success: true,
