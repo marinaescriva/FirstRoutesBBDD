@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { User } from "../models/User";
-import { UpdateDateColumn } from "typeorm";
 
 export const getUsers = async (req: Request, res: Response) => {
 
@@ -122,38 +121,38 @@ export const updateUserById = async (req: Request, res: Response) => {
             error: error
         })
 
-    }
+    }}
 
-}
 
-export const deleteUserById = async(req: Request , res: Response)=>{
 
-    try{
-        const userId = req.params.id;
-
-        const userToRemove = await User.find({
-            id: parseInt(userId),
+export const deleteUserById = async (req: Request, res: Response) => {
+    try {
+      const userId = req.params.id;
+  
+      const userToRemove: any = await User.findOneBy({
+        id: parseInt(userId),
+      })
+  
+      if(!userToRemove) {
+        res.status(404).json({
+          success: false,
+          message: "user cant be deleted",
         })
-
-        if(!userToRemove){
-            res.status(404).json({
-                success: true, 
-                message: "no da tiempo",
-            })
-        }
-
-        const userDeleted = await User.remove(userToRemove);
-
-        res.status(200).json
-
-    }catch{
-
-
-
+      }    
+      
+      const userDeleted = await User.delete(userToRemove)
+  
+      res.status(200).json({
+        success: false,
+        message: "user deleted",
+        data: userDeleted
+      })
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: "user cant be deleted",
+        error: error
+      })
     }
-
-
-
-
 
 }

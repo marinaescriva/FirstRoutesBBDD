@@ -2,7 +2,7 @@
 // import dotenv from "dotenv";
 import express, { Application } from "express";
 import { createRoles, deleteRoles, getRoles, updateRoles } from "./controllers/roleController";
-import { register } from "./controllers/authController";
+import {  login, register } from "./controllers/authController";
 import { deleteUserById, getUserById, getUsers, updateUserById } from "./controllers/userController";
 
 // dotenv.config(); //ejecutas la funcion config de dotenv 
@@ -41,3 +41,5 @@ app.get('/api/users/:id', getUserById);
 
 app.put('/api/users/:id' , updateUserById);
 app.delete('/api/users/:id' , deleteUserById);
+
+app.post('/api/login' , login);
