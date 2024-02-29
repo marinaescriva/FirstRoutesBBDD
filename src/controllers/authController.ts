@@ -134,7 +134,7 @@ export const login = async (req: Request, res: Response) => {
             },
             process.env.JWT_SECRET as string, //esto está en env, es la palabra secreto
             {
-                expiresIn:"2h" //para q salga la sesión expire
+                expiresIn:"5h" //para q salga la sesión expire
             }
 
         )

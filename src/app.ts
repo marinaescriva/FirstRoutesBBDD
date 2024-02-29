@@ -5,6 +5,7 @@ import { createRoles, deleteRoles, getRoles, updateRoles } from "./controllers/r
 import { login, register } from "./controllers/authController";
 import { deleteUserById, getUserById, getUsers, updateUserById } from "./controllers/userController";
 import { auth } from "./middlewares/auth";
+import { isSuperAdmin } from "./middlewares/isSuperAdmin";
 
 // dotenv.config(); //ejecutas la funcion config de dotenv 
 export const app: Application = express();
@@ -41,7 +42,7 @@ app.post('/api/login', login);
 
 //usuarios
 
-app.get('/api/users', auth,  getUsers);  // añadir un seguridad de token con auth
+app.get('/api/users', auth, isSuperAdmin, getUsers);  // añadir un seguridad de token con auth
 
 app.get('/api/users/:id', getUserById);
 
