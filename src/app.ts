@@ -2,8 +2,9 @@
 // import dotenv from "dotenv";
 import express, { Application } from "express";
 import { createRoles, deleteRoles, getRoles, updateRoles } from "./controllers/roleController";
-import {  login, register } from "./controllers/authController";
+import { login, register } from "./controllers/authController";
 import { deleteUserById, getUserById, getUsers, updateUserById } from "./controllers/userController";
+import { auth } from "./middlewares/auth";
 
 // dotenv.config(); //ejecutas la funcion config de dotenv 
 export const app: Application = express();
@@ -13,12 +14,12 @@ app.use(express.json()); //ejecuta hasta encontrar el endpoint y sino devuelve u
 
 
 
-app.get('/healthy',(req, res)=>{  //la funcion q se ejecuta en la ruta healthy 
+app.get('/healthy', (req, res) => {  //la funcion q se ejecuta en la ruta healthy 
 
-    res.status(200).json (
+    res.status(200).json(
         {
-        succes: true,
-         message: "server is healthy",
+            succes: true,
+            message: "server is healthy",
         }
     );
 
@@ -36,10 +37,15 @@ app.delete('/roles/:id', deleteRoles);
 
 app.post('/api/register', register);
 
-app.get('/api/users', getUsers);
+app.post('/api/login', login);
+
+//usuarios
+
+app.get('/api/users', auth,  getUsers);  // añadir un seguridad de token con auth
+
 app.get('/api/users/:id', getUserById);
 
-app.put('/api/users/:id' , updateUserById);
-app.delete('/api/users/:id' , deleteUserById);
+app.put('/api/users/:id', updateUserById);
 
-app.post('/api/login' , login);
+app.delete('/api/users/:id', deleteUserById);
+
