@@ -10,6 +10,7 @@ import { FavouriteBooks1708950751584 } from "./migrations/1708950751584-favourit
 import { AddIsActiveColumnToUsers1709024915342 } from "./migrations/1709024915342-add_is_active_column_to_users"
 import { Role } from "../models/Role"
 import { User } from "../models/User"
+import { Author } from "../models/Author"
 
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -18,7 +19,7 @@ export const AppDataSource = new DataSource({
     username: process.env.DB_USER || "root",
     password: process.env.DB_ROOT_PASSWORD || "",
     database: process.env.DB_DATABASE || "sfd_library_online",
-    entities: [Role, User],
+    entities: [Role, User, Author],
     migrations:[Roles1708945333761 , Users1708948594147, Authors1708949773021,Books1708950262101,FavouriteBooks1708950751584, AddIsActiveColumnToUsers1709024915342],
     synchronize: false,
     logging: false,

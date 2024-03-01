@@ -16,12 +16,12 @@ export class Authors1708949773021 implements MigrationInterface {
                         generationStrategy: "increment",
                     },
                     {
-                        name: "nombre",
+                        name: "name",
                         type: "varchar",
                         length: "50",
                     },
                     {
-                        name: "nacionalidad",
+                        name: "nationality",
                         type: "varchar",
                         length: "50",
                     },

@@ -3,9 +3,10 @@
 import express, { Application } from "express";
 import { createRoles, deleteRoles, getRoles, updateRoles } from "./controllers/roleController";
 import { login, register } from "./controllers/authController";
-import { deleteUserById, getUserById, getUsers, updateUserById } from "./controllers/userController";
+import { deleteUserById, getUserById, getUsers, updateProfile, updateUserById } from "./controllers/userController";
 import { auth } from "./middlewares/auth";
 import { isSuperAdmin } from "./middlewares/isSuperAdmin";
+import { createAuthor } from "./controllers/authorController";
 
 // dotenv.config(); //ejecutas la funcion config de dotenv 
 export const app: Application = express();
@@ -44,9 +45,20 @@ app.post('/api/login', login);
 
 app.get('/api/users', auth, isSuperAdmin, getUsers);  // añadir un seguridad de token con auth
 
+app.put('/api/users/profile', auth, updateProfile);
+
 app.get('/api/users/:id', getUserById);
 
 app.put('/api/users/:id', updateUserById);
 
 app.delete('/api/users/:id', deleteUserById);
+
+
+
+//authors
+
+app.post('/api/authors' , auth , isSuperAdmin, createAuthor);
+
+
+
 

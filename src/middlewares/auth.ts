@@ -17,7 +17,7 @@ export const auth = (req:Request, res: Response , next: NextFunction) => {
             }
         )
     }
-    try{
+    try{ // comprobar que el token es de formato secreto
 
         const decoded = jwt.verify(
             token,
@@ -27,9 +27,10 @@ export const auth = (req:Request, res: Response , next: NextFunction) => {
 
         req.tokenData = decoded as TokenData;
 
-        next();
+        next(); //aqui se termina el control del token
 
     }catch(error){
+
         return res.status(500).json(
             {
                 success: false,

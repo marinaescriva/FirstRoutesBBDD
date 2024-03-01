@@ -156,3 +156,52 @@ export const deleteUserById = async (req: Request, res: Response) => {
     }
 
 }
+
+export const updateProfile = async (req: Request , res: Response) =>{
+
+    
+    try {
+        //recuperar data
+
+        const name = req.body.name   //solo modificar el nombre por ejemplo
+        const userId = req.tokenData.userId
+
+        //validar datos
+        if(!name){
+            return res.status(400).json({
+                success: false,
+                message:"name is nedded"
+            })
+        }
+
+        //tratar datos  ( no hace falta)
+
+        //actualizar en BD
+
+       const userUpdated = User.update({
+        
+            id: userId
+
+       },
+       {
+            name: name
+        })
+
+        //responder
+
+        res.status(200).json({
+            success: true,
+            message: "user is updated",
+            data: userUpdated
+        })
+
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "user cant be Updated",
+            error: error
+        })
+
+    }
+}
