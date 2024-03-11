@@ -14,8 +14,6 @@ export const app: Application = express();
 app.use(express.json()); //ejecuta hasta encontrar el endpoint y sino devuelve un 404
 
 
-
-
 app.get('/healthy', (req, res) => {  //la funcion q se ejecuta en la ruta healthy 
 
     res.status(200).json(
